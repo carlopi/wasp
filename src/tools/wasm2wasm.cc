@@ -191,7 +191,16 @@ int Tool::Run() {
 
  //Add plippoplappo with the right type and the right module name
   auto S = (*binary_module).imports[0].value().module;
-  const int indexFUNC = (*binary_module).imports.size();
+  int indexFUNC = 0;
+
+  for (auto& x : (*binary_module).imports)
+  {
+	  if (x.value().is_function())
+		  indexFUNC++;
+  }
+
+
+  (*binary_module).imports.size();
   (*binary_module).imports.push_back(wasp::binary::Import{(string_view)S, "__magic_pgo_function__"_sv, Index{indexTYPE}});
 
 
